@@ -1,61 +1,45 @@
 import './App.css';
+import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
+import axios from 'axios';
 
 const App = () => {
-  const series = [
-    {
-      name: 'Candlestick',
-      type: 'candlestick',
-      data: [
-        {
-          x: new Date(1538778600000),
-          y: [6629.81, 6650.5, 6623.04, 6633.33]
-        },
-        {
-          x: new Date(1538780400000),
-          y: [6632.01, 6643.59, 6620, 6630.11]
-        },
-        {
-          x: new Date(1538782200000),
-          y: [6630.71, 6648.95, 6623.34, 6635.65]
-        },
-        {
-          x: new Date(1538784000000),
-          y: [6635.65, 6651, 6629.67, 6638.24]
-        },
-        {
-          x: new Date(1538785800000),
-          y: [6638.24, 6640, 6620, 6624.47]
-        }
-      ]
-    },
-    {
-      name: 'testing moving average',
-      type: 'line',
-      data: [
-        {
-          x: new Date(1538778600000),
-          y: [6660.81]
-        },
-        {
-          x: new Date(1538780400000),
-          y: [6650.01]
-        },
-        {
-          x: new Date(1538782200000),
-          y: [6640.71]
-        },
-        {
-          x: new Date(1538784000000),
-          y: [6630.65]
-        },
-        {
-          x: new Date(1538785800000),
-          y: [6638.24]
-        }
-      ]
-    }
-  ];
+  const defaultSeries = {
+    name: 'Candlestick',
+    type: 'candlestick',
+    data: []
+  };
+  const [series, setSeries] = useState([defaultSeries]);
+  const fetchStockData = async () => {
+    const APIurl = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=5min&apikey=${process.env.REACT_APP_API_KEY}`;
+    const res = await axios({
+      method: 'get',
+      url: APIurl,
+      responseType: 'json'
+    });
+
+    const { data } = res;
+    console.log(data);
+    const timeSeries = data['Time Series (5min)'];
+    const stockData = [];
+    Object.entries(timeSeries).forEach((el) => {
+      const time = el[0];
+      const open = Number(el[1]['1. open']);
+      const high = Number(el[1]['2. high']);
+      const low = Number(el[1]['3. low']);
+      const close = Number(el[1]['4. close']);
+      stockData.push({
+        x: new Date(time),
+        y: [open, high, low, close]
+      });
+    });
+    const newSeries = { ...defaultSeries, data: stockData };
+    setSeries([newSeries]);
+  };
+  useEffect(() => {
+    fetchStockData();
+  }, []);
+
   const options = {
     chart: {
       type: 'candlestick',
