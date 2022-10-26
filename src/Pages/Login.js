@@ -2,29 +2,33 @@
 // 로그인 화면- play as guest? -local같은곳에 저장을 하거나 해야하는데 어려울듯?
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Nav from '../Components/Nav';
 const LogIn = () => {
   return (
-    <StyledLoginContainer>
-      <StyledTitle>Day Trader Game Beta</StyledTitle>
-      <StyledForm>
-        <StyledLoginDiv>
-          <StyledLabel htmlFor="email_input">Email Address</StyledLabel>
-          <StyledInput placeholder="Enter your email address" id="email_input"></StyledInput>
-        </StyledLoginDiv>
-        <StyledLoginDiv>
-          <StyledLabel htmlFor="password_input">Password</StyledLabel>
-          <StyledInput placeholder="Enter your password" id="password_input"></StyledInput>
-        </StyledLoginDiv>
+    <>
+      <Nav></Nav>
+      <StyledLoginContainer>
+        <StyledTitle>Day Trader Game Beta</StyledTitle>
+        <StyledForm>
+          <StyledLoginDiv>
+            <StyledLabel htmlFor="email_input">Email Address</StyledLabel>
+            <StyledInput placeholder="Enter your email address" id="email_input"></StyledInput>
+          </StyledLoginDiv>
+          <StyledLoginDiv>
+            <StyledLabel htmlFor="password_input">Password</StyledLabel>
+            <StyledInput placeholder="Enter your password" id="password_input"></StyledInput>
+          </StyledLoginDiv>
 
-        <StyledButton>Login</StyledButton>
-        <StyledButton>Sign in with Google</StyledButton>
-      </StyledForm>
-      <StyledBottom>
-        <StyledLink to={'/register'}>Register</StyledLink>
-        <span>|</span>
-        <StyledLink to={'/reset-password'}>Forgot Password</StyledLink>
-      </StyledBottom>
-    </StyledLoginContainer>
+          <StyledButton>Login</StyledButton>
+          <StyledButton>Sign in with Google</StyledButton>
+        </StyledForm>
+        <StyledBottom>
+          <StyledLink to={'/signup'}>Sign Up</StyledLink>
+          <span>|</span>
+          <StyledLink to={'/reset-password'}>Forgot Password</StyledLink>
+        </StyledBottom>
+      </StyledLoginContainer>
+    </>
   );
 };
 const StyledLink = styled(Link)`
@@ -68,7 +72,7 @@ const StyledLoginContainer = styled.div`
   padding: 2rem;
 `;
 const StyledTitle = styled.div`
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: bold;
   margin-bottom: 5rem;
 `;
