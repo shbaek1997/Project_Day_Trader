@@ -46,6 +46,7 @@ const StyledNav = styled.nav`
   align-items: center;
   justify-content: space-between;
   background-color: black;
+  height: 6vh;
 `;
 const StyledNavContainer = styled.div`
   margin: 1rem 2rem;
