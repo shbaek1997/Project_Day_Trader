@@ -3,35 +3,47 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Nav from '../Components/Nav';
-const LogIn = () => {
+const SignUp = () => {
   return (
     <>
       <Nav></Nav>
       <StyledLoginContainer>
         <StyledTitle>Day Trader Game Beta</StyledTitle>
         <StyledForm>
-          <StyledLoginDiv>
+          <StyledSignUpDiv>
+            <StyledLabel htmlFor="nickname_input">Nickname</StyledLabel>
+            <StyledInput
+              placeholder="Enter your nickname"
+              id="nickname_input"
+              type={'text'}></StyledInput>
+          </StyledSignUpDiv>
+          <StyledSignUpDiv>
             <StyledLabel htmlFor="email_input">Email Address</StyledLabel>
             <StyledInput
               placeholder="Enter your email address"
               id="email_input"
               type={'email'}></StyledInput>
-          </StyledLoginDiv>
-          <StyledLoginDiv>
+          </StyledSignUpDiv>
+          <StyledSignUpDiv>
             <StyledLabel htmlFor="password_input">Password</StyledLabel>
             <StyledInput
               placeholder="Enter your password"
               id="password_input"
               type={'password'}></StyledInput>
-          </StyledLoginDiv>
+          </StyledSignUpDiv>
+          <StyledSignUpDiv>
+            <StyledLabel htmlFor="repeat_password_input">Repeat Password</StyledLabel>
+            <StyledInput
+              placeholder="Enter your password again"
+              id="repeat_password_input"
+              type={'password'}></StyledInput>
+          </StyledSignUpDiv>
 
-          <StyledButton>Login</StyledButton>
-          <StyledButton>Sign in with Google</StyledButton>
+          <StyledButton>Sign Up</StyledButton>
         </StyledForm>
         <StyledBottom>
-          <StyledLink to={'/signup'}>Sign Up</StyledLink>
-          <span>|</span>
-          <StyledLink to={'/reset-password'}>Forgot Password</StyledLink>
+          <span>Already have an account?</span>
+          <StyledLink to={'/login'}>Log in</StyledLink>
         </StyledBottom>
       </StyledLoginContainer>
     </>
@@ -65,7 +77,7 @@ const StyledLabel = styled.label`
   margin-bottom: 1rem;
 `;
 
-const StyledLoginDiv = styled.div`
+const StyledSignUpDiv = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -94,4 +106,4 @@ const StyledInput = styled.input`
     border-bottom: 1px solid black;
   }
 `;
-export default LogIn;
+export default SignUp;

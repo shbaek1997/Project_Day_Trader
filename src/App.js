@@ -4,6 +4,7 @@ import Stockchart from './Components/StockChart';
 import LogIn from './Pages/Login';
 import Home from './Pages/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import SignUp from './Pages/Signup';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/login" element={<LogIn></LogIn>}></Route>
+        <Route path="/signup" element={<SignUp></SignUp>}></Route>
         <Route path="/stocks" element={<Stockchart></Stockchart>}></Route>
       </Routes>
     </BrowserRouter>

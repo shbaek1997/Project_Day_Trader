@@ -12,7 +12,7 @@ const Stockchart = () => {
   const [series, setSeries] = useState([defaultSeries]);
   const fetchStockData = async () => {
     //replace this api call with my api
-    const APIurl = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=TSLA&interval=5min&apikey=${process.env.REACT_APP_API_KEY}`;
+    const APIurl = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=NVDA&interval=5min&apikey=${process.env.REACT_APP_API_KEY}`;
     const res = await axios({
       method: 'get',
       url: APIurl,
