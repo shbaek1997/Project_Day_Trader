@@ -1,13 +1,8 @@
 // 홈화면
 import Nav from '../Components/Nav';
 import styled from 'styled-components';
-import { useContext } from 'react';
-import AuthContext from '../Context/AuthContext';
 const Home = () => {
-  const { user } = useContext(AuthContext);
-  const isLoggedIn = user !== null ? true : false;
-  console.log('user', user);
-  console.log('isloggedin', isLoggedIn);
+  const isLoggedIn = false;
   return (
     <>
       <Nav></Nav>
