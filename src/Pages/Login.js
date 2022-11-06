@@ -1,28 +1,45 @@
 // 홈화면
 // 로그인 화면- play as guest? -local같은곳에 저장을 하거나 해야하는데 어려울듯?
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useInput from '../hook/useInput';
 import Nav from '../Components/Nav';
+import * as Api from '../Utils/api';
 const LogIn = () => {
+  const navigate = useNavigate();
+  const [email, onChangeEmail] = useInput('');
+  const [password, onChangePassword] = useInput('');
+  const handleLoginSubmit = async (event) => {
+    event.preventDefault();
+    const user = await Api.post('user/login', { email, password });
+    console.log(user);
+    if (user) {
+      navigate('/');
+    }
+  };
   return (
     <>
       <Nav></Nav>
       <StyledLoginContainer>
         <StyledTitle>Day Trader Game Beta</StyledTitle>
-        <StyledForm>
+        <StyledForm onSubmit={handleLoginSubmit}>
           <StyledLoginDiv>
             <StyledLabel htmlFor="email_input">Email Address</StyledLabel>
             <StyledInput
               placeholder="Enter your email address"
               id="email_input"
-              type={'email'}></StyledInput>
+              type={'email'}
+              value={email}
+              onChange={onChangeEmail}></StyledInput>
           </StyledLoginDiv>
           <StyledLoginDiv>
             <StyledLabel htmlFor="password_input">Password</StyledLabel>
             <StyledInput
               placeholder="Enter your password"
               id="password_input"
-              type={'password'}></StyledInput>
+              type={'password'}
+              value={password}
+              onChange={onChangePassword}></StyledInput>
           </StyledLoginDiv>
 
           <StyledButton>Login</StyledButton>
