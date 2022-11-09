@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 //로그인이 안되어있다:
@@ -6,7 +7,9 @@ import styled from 'styled-components';
 // 항상 Home, PlayGame, Profile (current status) -profile을 클릭하면 모달이 떠서 로그아웃, 상세 내용...  같은 것들이 보여야한다.
 //그러면 그냥 Login status에 따라 바뀔 2개의 Navbar만 만들면 될것 같다.
 const Nav = () => {
-  let isLoggedIn = false;
+  const { isLoggedIn } = useSelector((state) => {
+    return state.auth;
+  });
   {
     if (!isLoggedIn) {
       return (

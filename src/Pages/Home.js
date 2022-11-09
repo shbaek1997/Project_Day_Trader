@@ -1,8 +1,11 @@
 // 홈화면
+import { useSelector } from 'react-redux';
 import Nav from '../Components/Nav';
 import styled from 'styled-components';
 const Home = () => {
-  const isLoggedIn = false;
+  const { isLoggedIn } = useSelector((state) => {
+    return state.auth;
+  });
   return (
     <>
       <Nav></Nav>
