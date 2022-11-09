@@ -1,20 +1,33 @@
 // 홈화면
 // 로그인 화면- play as guest? -local같은곳에 저장을 하거나 해야하는데 어려울듯?
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import useInput from '../hook/useInput';
 import Nav from '../Components/Nav';
-import * as Api from '../Utils/api';
+// import * as Api from '../Utils/api';
+import { login } from '../Context/slice';
 const LogIn = () => {
+  const { isLoggedIn } = useSelector((state) => {
+    return state.auth;
+  });
+  console.log(isLoggedIn);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
   const handleLoginSubmit = async (event) => {
-    event.preventDefault();
-    const user = await Api.post('user/login', { email, password });
-    console.log(user);
-    if (user) {
-      navigate('/');
+    try {
+      event.preventDefault();
+      const response = await dispatch(login({ email, password }));
+      const { payload } = response;
+      const { user } = payload;
+      if (user) {
+        navigate('/');
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
   return (
