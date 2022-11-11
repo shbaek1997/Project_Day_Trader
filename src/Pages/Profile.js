@@ -16,9 +16,8 @@ const Profile = () => {
     }
   }
   const handleClick = (event) => {
-    const url = event.target.getAttribute('url');
-    console.log(url);
-    // navigate('/edit');
+    const url = event.target.getAttribute('name');
+    navigate(`/${url}`);
   };
   return (
     <>
@@ -26,11 +25,15 @@ const Profile = () => {
       <StyledMenuContainer>
         <StyledHeading>My Page</StyledHeading>
         <div>
-          <StyledMenu url={'/edit'} onClick={handleClick}>
+          <StyledMenu name={'edit'} onClick={handleClick}>
             Edit Profile
           </StyledMenu>
-          <StyledMenu>My Stocks</StyledMenu>
-          <StyledMenu>Statistics</StyledMenu>
+          <StyledMenu name={'stocks'} onClick={handleClick}>
+            My Stocks
+          </StyledMenu>
+          <StyledMenu name={'stats'} onClick={handleClick}>
+            Statistics
+          </StyledMenu>
         </div>
       </StyledMenuContainer>
     </>
@@ -60,4 +63,9 @@ const StyledMenu = styled.div`
   color: white;
   font-weight: bold;
   font-size: 18px;
+  border-radius: 16px;
+  &:hover {
+    cursor: pointer;
+    background-color: grey;
+  }
 `;
