@@ -28,10 +28,10 @@ const Nav = () => {
       <StyledNav>
         <StyledNavContainer>
           <StyledNavLink to={'/'}>Home</StyledNavLink>
-          <StyledNavLink to={'/login'}>Play Game</StyledNavLink>
+          <StyledNavLink to={'/game'}>Play Game</StyledNavLink>
         </StyledNavContainer>
         <StyledNavContainer>
-          <StyledNavLink to={'/signup'}>My Profile</StyledNavLink>
+          <StyledNavLink to={'/profile'}>My Profile</StyledNavLink>
         </StyledNavContainer>
       </StyledNav>
     );
