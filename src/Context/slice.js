@@ -2,7 +2,10 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import authService from '../Utils/auth-service';
 
 const userString = window.localStorage.getItem('user');
-const user = JSON.parse(userString);
+const user = userString ? JSON.parse(userString) : null;
+console.log(user);
+
+// const user = JSON.parse(userString);
 const initialState = user ? { isLoggedIn: true, ...user } : { isLoggedIn: false, user: null };
 
 export const signup = createAsyncThunk(
